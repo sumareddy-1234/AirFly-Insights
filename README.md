@@ -1,8 +1,8 @@
-\# ✈️ AirFly Insights – Data Visualization and Analysis of Airline Operations
+# ✈️ AirFly Insights – Data Visualization and Analysis of Airline Operations
 
 
 
-\## 📌 Project Overview
+## 📌 Project Overview
 
 
 
@@ -22,35 +22,19 @@ This project is part of my learning journey in data analytics and helps me build
 
 
 
-\## 🎯 Objectives
+## 🎯 Objectives
 
 
 
-\- Analyze flight delays and cancellations  
+- Analyze flight delays and cancellations  
 
-\- Identify trends across airlines, airports, and routes  
+- Identify trends across airlines, airports, and routes  
 
-\- Perform data cleaning and preprocessing  
+- Perform data cleaning and preprocessing  
 
-\- Create derived features for time-based analysis  
+- Create derived features for time-based analysis  
 
-\- Prepare data for visualization and dashboarding  
-
-
-
----
-
-
-
-\## 📂 Dataset
-
-
-
-\- Source: Kaggle Airlines Flights Data  
-
-\- Contains flight information such as airline, origin, destination, delays, and cancellations  
-
-\- Due to large size, sampling and memory optimization were used  
+- Prepare data for visualization and dashboarding  
 
 
 
@@ -58,33 +42,49 @@ This project is part of my learning journey in data analytics and helps me build
 
 
 
-\## 🧹 Milestone 1 – Data Cleaning \& Preparation
+## 📂 Dataset
 
 
 
-\### ✔ Tasks Completed
+- Source: Kaggle Airlines Flights Data  
+
+- Contains flight information such as airline, origin, destination, delays, and cancellations  
+
+- Due to large size, sampling and memory optimization were used  
 
 
 
-\- Loaded dataset using pandas with sampling  
+---
 
-\- Explored schema, datatypes, and missing values  
 
-\- Converted date columns to datetime format  
 
-\- Filled missing delay values using median  
+## 🧹 Milestone 1 – Data Cleaning \& Preparation
 
-\- Filled missing cancellation codes with "Not Cancelled"  
 
-\- Filled delay reason columns with 0  
 
-\- Removed duplicate records  
+### ✔ Tasks Completed
 
-\- Normalized categorical fields  
 
-\- Ensured valid and positive delay values  
 
-\- Created new features:
+- Loaded dataset using pandas with sampling  
+
+- Explored schema, datatypes, and missing values  
+
+- Converted date columns to datetime format  
+
+- Filled missing delay values using median  
+
+- Filled missing cancellation codes with "Not Cancelled"  
+
+- Filled delay reason columns with 0  
+
+- Removed duplicate records  
+
+- Normalized categorical fields  
+
+- Ensured valid and positive delay values  
+
+- Created new features:
 
 &nbsp; - Month  
 
@@ -94,7 +94,7 @@ This project is part of my learning journey in data analytics and helps me build
 
 &nbsp; - Route (Origin–Destination)  
 
-\- Saved cleaned dataset for reuse  
+- Saved cleaned dataset for reuse  
 
 
 
@@ -102,7 +102,7 @@ This project is part of my learning journey in data analytics and helps me build
 
 
 
-\## 📊 Feature Dictionary (Key Columns)
+## 📊 Feature Dictionary (Key Columns)
 
 
 
@@ -110,7 +110,7 @@ This project is part of my learning journey in data analytics and helps me build
 
 |--------|------------|
 
-| FL\_DATE | Flight date |
+| FL_DATE | Flight date |
 
 | AIRLINE | Airline name |
 
@@ -118,13 +118,13 @@ This project is part of my learning journey in data analytics and helps me build
 
 | DEST | Destination airport |
 
-| DEP\_DELAY | Departure delay (minutes) |
+| DEP_DELAY | Departure delay (minutes) |
 
-| ARR\_DELAY | Arrival delay (minutes) |
+| ARR_DELAY | Arrival delay (minutes) |
 
 | MONTH | Extracted month |
 
-| DAY\_OF\_WEEK | Extracted weekday |
+| DAY_OF_WEEK | Extracted weekday |
 
 | HOUR | Departure hour |
 
@@ -136,37 +136,17 @@ This project is part of my learning journey in data analytics and helps me build
 
 
 
-\## 🛠 Tools \& Technologies
+## 🛠 Tools \& Technologies
 
 
 
-\- Python  
+- Python  
 
-\- Pandas  
+- Pandas  
 
-\- NumPy  
+- NumPy  
 
-\- Jupyter Notebook  
-
-
-
----
-
-
-
-\## 🚀 Future Work
-
-
-
-\- Exploratory Data Analysis (EDA)  
-
-\- Delay cause analysis  
-
-\- Seasonal trend analysis  
-
-\- Visualizations and dashboards  
-
-\- Streamlit dashboard deployment  
+- Jupyter Notebook  
 
 
 
@@ -174,7 +154,27 @@ This project is part of my learning journey in data analytics and helps me build
 
 
 
-\## 🙌 Learning Outcome
+## 🚀 Future Work
+
+
+
+- Exploratory Data Analysis (EDA)  
+
+- Delay cause analysis  
+
+- Seasonal trend analysis  
+
+- Visualizations and dashboards  
+
+- Streamlit dashboard deployment  
+
+
+
+---
+
+
+
+## 🙌 Learning Outcome
 
 
 
@@ -182,15 +182,15 @@ This project helped me understand:
 
 
 
-\- Real-world data preprocessing  
+- Real-world data preprocessing  
 
-\- Handling missing values  
+- Handling missing values  
 
-\- Feature engineering  
+- Feature engineering  
 
-\- Working with large datasets  
+- Working with large datasets  
 
-\- Structuring an analytics project step-by-step  
+- Structuring an analytics project step-by-step  
 
 
 
@@ -198,7 +198,7 @@ This project helped me understand:
 
 
 
-\## 👩‍💻 Author
+## 👩‍💻 Author
 
 
 

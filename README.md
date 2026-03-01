@@ -10,7 +10,7 @@ This milestone primarily focuses on **data cleaning, preprocessing, statistical 
 
 The objective is not just cleaning the data, but also understanding its **distribution, skewness, and operational behavior**.
 
-This project is part of my learning journey in data analytics and helps me build practical skills in handling real-world datasets.
+This project is part of my Infosys SpringBoard Virtual Internship 6.0 in Data Visualization and helps me build practical skills in handling real-world datasets.
 
 ---
 

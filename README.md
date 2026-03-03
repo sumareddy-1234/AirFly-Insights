@@ -11,7 +11,11 @@ The project is divided into two major milestones:
 - **Milestone 1:** Data Cleaning, Statistical Validation, and Feature Engineering  
 - **Milestone 2:** Visual Exploration, Delay Trend Analysis, and Temporal Intelligence  
 
+<<<<<<< milestone2
 The objective is not just cleaning the data, but also understanding its distribution, skewness, seasonal patterns, delay causes, and operational behavior using visual storytelling techniques.
+=======
+This project is part of my Infosys SpringBoard Virtual Internship 6.0 in Data Visualization and helps me build practical skills in handling real-world datasets.
+>>>>>>> main
 
 This project is part of my Infosys Springboard Virtual Internship 6.0 in Data Visualization and helps me build practical skills in handling real-world datasets and developing analytical dashboards.
 ---

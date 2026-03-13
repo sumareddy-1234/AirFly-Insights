@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-AirFly Insights is a **data analytics and visualization project focused on large-scale airline flight data**. The project analyzes airline operational performance to identify **delay patterns, route congestion, seasonal trends, and airport-level activity** through visual analysis.
+AirFly Insights is a **data visualization project focused on large-scale airline flight data**. The project analyzes airline operational performance to identify **delay patterns, route congestion, seasonal trends, and airport-level activity** through visual analysis.
 
 The objective is to transform aviation datasets into **meaningful insights using data visualization techniques**, helping understand airline operations and performance.
 

@@ -1,209 +1,209 @@
-# ✈️ AirFly Insights – Data Cleaning and Operational Insights
-
----
+# ✈️ AirFly Insights: Data Visualization and Analysis of Airline Operations
 
 ## 📌 Project Overview
 
-AirFly Insights is a data analytics project focused on analyzing airline flight operations to understand delay patterns, cancellations, and operational efficiency.
+AirFly Insights is a **data visualization project focused on large-scale airline flight data**. The project analyzes airline operational performance to identify **delay patterns, route congestion, seasonal trends, and airport-level activity** through visual analysis.
 
-This milestone primarily focuses on **data cleaning, preprocessing, statistical validation, and structured aggregation analysis** to prepare the dataset for further visualization and advanced analytics.
+The objective is to transform aviation datasets into **meaningful insights using data visualization techniques**, helping understand airline operations and performance.
 
-The objective is not just cleaning the data, but also understanding its **distribution, skewness, and operational behavior**.
-
-This project is part of my Infosys SpringBoard Virtual Internship 6.0 in Data Visualization and helps me build practical skills in handling real-world datasets.
+This project was developed as part of the **Infosys Springboard Virtual Internship 6.0**.
 
 ---
 
-## 🎯 Objectives
+# 🎯 Project Statement
 
-- Clean and preprocess airline flight dataset  
-- Handle missing values using statistically justified methods  
-- Analyze delay distributions using skewness  
-- Perform aggregation analysis across airlines and routes  
-- Engineer time-based and route-based features  
-- Generate a clean dataset for downstream analytics and dashboards  
+The objective of this project is to **analyze large-scale airline flight data to uncover operational trends, delay patterns, and cancellation reasons using data visualization techniques**.
+
+The goal is to help understand **airline and airport-level performance** and contribute to **actionable insights using visual analysis**.
 
 ---
 
-## 📂 Dataset
+# 🎓 Internship Context
 
-- **Source:** Kaggle Airlines Flights Dataset  
-- Contains flight-level operational data including:
-  - Airline
-  - Origin and destination airports
-  - Departure and arrival delays
-  - Cancellation status
-  - Delay reasons  
-- Due to large size, **sampling and memory optimization** were applied  
-- Final cleaned dataset saved as: `cleaned_flights.csv`
+This project is part of the **Infosys Springboard Virtual Internship 6.0**, where the objective is to apply **data analytics and visualization techniques** to a real-world aviation dataset.
 
----
+The project demonstrates practical skills in:
 
-## 🧹 Milestone 1 – Data Cleaning & Statistical Preparation
+* Data preprocessing and feature engineering
+* Exploratory Data Analysis (EDA)
+* Statistical visualization
+* Airline operations analysis
+* Interactive dashboard development
 
 ---
 
-### ✔ Tasks Completed
+# 📂 Project Files
 
-#### 1️⃣ Data Loading & Initial Inspection
-
-- Loaded dataset using `pandas`
-- Inspected structure using `.info()` and `.describe()`
-- Identified missing values and data types
-- Checked dataset size and memory usage
-
----
-
-#### 2️⃣ Datetime Processing
-
-- Converted `FL_DATE` from string to datetime format
-- Extracted new time-based features:
-  - `MONTH`
-  - `DAY_OF_WEEK`
-  - `HOUR`
+```id="9e5lg7"
+AirFly-Insights
+│
+├── AirFly_Insights_Milestone1_Data_Cleaning.ipynb
+├── AirFly_Insights_Milestone2_Visual_Analysis.ipynb
+├── Milestone3_Route_Seasonal_Cancellation_Insights.ipynb
+├── app.py
+├── cleaned_flights.csv
+└── README.md
+```
 
 ---
 
-#### 3️⃣ Missing Value Handling
+# 🧰 Technologies Used
 
-- Filled `DEP_DELAY` and `ARR_DELAY` using **median**
-  - Median chosen due to strong positive skewness
-- Filled `CANCELLATION_CODE` with `"Not Cancelled"`
-- Filled delay reason columns (`DELAY_DUE_*`) with `0`
-- Removed duplicate records
-
----
-
-#### 4️⃣ Data Normalization
-
-- Standardized categorical columns:
-  - Converted text to uppercase
-  - Removed extra spaces
-- Ensured valid and consistent values
-- Removed invalid records where required for analysis
+* **Python**
+* **Pandas** – data manipulation and preprocessing
+* **NumPy** – numerical operations
+* **Matplotlib** – data visualization
+* **Seaborn** – statistical visualization
+* **Streamlit** – interactive dashboard development
 
 ---
 
-#### 5️⃣ Feature Engineering
+# 📊 Expected Outcomes
 
-Created new analytical features:
+The project aims to achieve the following outcomes:
 
-- `MONTH` – extracted from flight date  
-- `DAY_OF_WEEK` – weekday of flight  
-- `HOUR` – departure hour  
-- `ROUTE` – combination of origin and destination  
-
-These features enable time-based and route-based analysis.
-
----
-
-#### 6️⃣ Skewness Analysis (Added Enhancement)
-
-- Calculated skewness for:
-  - Arrival Delay
-  - Departure Delay
-
-**Observations:**
-- Both delays show **high positive skewness (~6.5)**
-- Indicates presence of extreme delay values (long right tail)
-
-**Conclusion:**
-- Mean is heavily affected by outliers
-- Median is more robust
-- Justifies median-based imputation for delay columns
+* Understand and preprocess aviation datasets for analysis
+* Explore trends in flight schedules, delays, cancellations, and routes
+* Visualize key metrics using bar charts, time series, heatmaps, maps, and comparisons
+* Provide insights for stakeholders including airline operators and analysts
+* Summarize findings through a final visual report and presentation
 
 ---
 
-#### 7️⃣ Aggregation Analysis (Added Enhancement)
+# 📅 Week-wise Implementation Plan
 
-Performed grouped analysis using `groupby`:
+## 🔹 Milestone 1: Data Foundation and Cleaning
 
-- Airline-level delay averages
-- Route-level total flights and average delays
-- Delay reason totals
-- Percentage of flights delayed more than 15 minutes
-- Cancellation percentage
+### Week 1: Project Initialization and Dataset Setup
 
-These aggregations help understand operational patterns before full EDA.
+Key activities performed:
 
----
+* Define project goals, KPIs, and workflow
+* Load flight datasets using Pandas
+* Explore dataset schema, column types, dataset size, and null values
+* Perform sampling and memory optimization for efficient analysis
 
-## 📊 Statistical Enhancements Included
+### Week 2: Preprocessing and Feature Engineering
 
-| Analysis | Purpose |
-|--------|--------|
-| Skewness | Understand delay distribution shape |
-| Aggregation | Identify operational trends |
-| Correlation | Check relationship between delays |
-| Delay % | Measure performance impact |
-| Route Analysis | Identify high-delay routes |
+Key tasks performed:
 
----
+* Handle missing values in delay and cancellation columns
+* Create derived features including:
 
-## 📊 Feature Dictionary (Key Columns)
+  * Month
+  * Day of Week
+  * Hour
+  * Route (Origin → Destination)
+* Format datetime columns
+* Save a cleaned dataset for analysis
 
-| Feature | Description |
-|--------|------------|
-| FL_DATE | Flight date |
-| AIRLINE | Airline code |
-| ORIGIN | Origin airport |
-| DEST | Destination airport |
-| DEP_DELAY | Departure delay (minutes) |
-| ARR_DELAY | Arrival delay (minutes) |
-| MONTH | Extracted month |
-| DAY_OF_WEEK | Extracted weekday |
-| HOUR | Departure hour |
-| ROUTE | Origin–Destination route |
+### Deliverables
+
+* Cleaned dataset
+* Summary of preprocessing logic
+* Feature dictionary
 
 ---
 
-## 📈 Key Observations from Milestone 1
+## 🔹 Milestone 2: Visual Exploration and Delay Trends
 
-- Delay distributions are highly right-skewed
-- Extreme delays significantly impact averages
-- Strong correlation between departure and arrival delays
-- Certain routes consistently experience higher delays
-- Carrier and late aircraft delays contribute most to total delay minutes
-- A small percentage of flights cause a large portion of delays
+### Week 3: Univariate and Bivariate Visual Analysis
 
----
+Analysis tasks include:
 
-## 🛠 Tools & Technologies
+* Identifying top airlines by number of flights
+* Identifying busiest routes
+* Analyzing flight distribution across months and hours
+* Exploring airport activity patterns
 
-- Python  
-- Pandas  
-- NumPy  
-- Jupyter Notebook  
+Visualization techniques used:
 
----
+* Bar charts
+* Histograms
+* Boxplots
+* Line charts
 
-## 🚀 Future Work
+### Week 4: Delay Analysis – Airline and Weather
 
-- Full Exploratory Data Analysis (EDA)
-- Seasonal and time-series analysis
-- Delay cause comparison across airlines and airports
-- Interactive dashboards using Streamlit
-- Advanced visual storytelling
+Analysis tasks include:
 
----
+* Comparing delay causes by airline
+* Exploring carrier delays, weather delays, and NAS delays
+* Visualizing delay patterns by time of day and airport
 
-## 🙌 Learning Outcome
+### Deliverables
 
-This milestone helped me gain hands-on experience in:
-
-- Real-world data preprocessing
-- Handling missing values correctly
-- Using skewness for statistical decisions
-- Feature engineering for analytics
-- Aggregation and KPI-based understanding
-- Structuring an end-to-end data analytics workflow
+* A set of visualizations (minimum 8)
+* Observations identifying peak delays and delay-prone airlines
 
 ---
 
-## 👩‍💻 Author
+## 🔹 Milestone 3: Route, Cancellation, and Seasonal Insights
 
-**Suma Satti**  
-B.Tech CSE (Data Science)  
-Aspiring Data Analyst  
+### Week 5: Route and Airport-Level Analysis
+
+Key analyses include:
+
+* Identification of top 10 origin-destination route pairs
+* Delay heatmaps by airport and route
+* Visualization of busiest airports and delay patterns
+
+### Week 6: Seasonal and Cancellation Analysis
+
+Analysis tasks include:
+
+* Monthly cancellation trends
+* Cancellation type analysis (carrier, weather, security, NAS)
+* Analysis of seasonal patterns such as winter months and holidays
+
+### Deliverables
+
+* Seasonal visual summaries
+* Insights on route congestion and operational trends
 
 ---
+
+# 📊 Interactive Dashboard
+
+An **interactive analytics dashboard** was built using **Streamlit** to explore airline operational insights dynamically.
+
+The dashboard allows users to analyze:
+
+* Airline performance
+* Route congestion patterns
+* Airport delay trends
+* Seasonal patterns
+* Delay causes
+
+---
+
+# ▶️ Running the Dashboard
+
+Install dependencies:
+
+```id="fd5p7i"
+pip install streamlit pandas matplotlib seaborn
+```
+
+Run the dashboard:
+
+```id="ty1xv3"
+streamlit run app.py
+```
+
+The dashboard will launch in your browser at:
+
+```id="dz2hve"
+http://localhost:8501
+```
+
+---
+
+# 👩‍💻 Author
+
+**Suma**
+Data Science Student
+
+Project completed as part of the **Infosys Springboard Virtual Internship 6.0**
+
+

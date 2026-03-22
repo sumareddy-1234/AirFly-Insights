@@ -509,13 +509,20 @@ elif section == "✈️ Airline Performance":
     st.plotly_chart(fig, use_container_width=True)
 
 # -----------------------------
-# 🔮 Delay Estimator (ML Model)
+# 🔮 Delay Estimator (ML MODEL)
 # -----------------------------
 elif section == "🔮 Delay Estimator":
 
     st.markdown("## 🔮 Flight Delay Prediction (ML Model)")
 
+    import numpy as np
+    from sklearn.linear_model import LinearRegression
+    from sklearn.model_selection import train_test_split
+    from sklearn.metrics import r2_score
+
+    # -----------------------------
     # User Inputs
+    # -----------------------------
     dep_delay = st.number_input("Departure Delay (minutes)", value=10)
     distance = st.number_input("Distance (miles)", value=500)
     airline_pred = st.selectbox("Airline", sorted(df["AIRLINE"].unique()))
@@ -523,49 +530,86 @@ elif section == "🔮 Delay Estimator":
     month_input = st.selectbox("Month", sorted(df["MONTH"].unique()))
 
     # -----------------------------
-    # Prepare ML Data
+    # Prepare Data (FULL DATASET)
     # -----------------------------
-    from sklearn.linear_model import LinearRegression
-    from sklearn.model_selection import train_test_split
-    from sklearn.metrics import r2_score
-
     features = ["DEP_DELAY", "DISTANCE", "MONTH"]
     target = "ARR_DELAY"
 
     df_ml = df.dropna(subset=features + [target])
 
+    # 🛑 Safety Check 1: Enough data
+    if len(df_ml) < 20:
+        st.error("Not enough data to train ML model")
+        st.stop()
+
     X = df_ml[features]
     y = df_ml[target]
 
-    # Train model
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    # 🛑 Safety Check 2: Variation in target
+    if y.nunique() < 2:
+        st.warning("Not enough variation in data for ML model")
+        st.stop()
 
-    model = LinearRegression()
-    model.fit(X_train, y_train)
+    # -----------------------------
+    # Train Model (Stable)
+    # -----------------------------
+    try:
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.2, random_state=42
+        )
+
+        model = LinearRegression()
+        model.fit(X_train, y_train)
+
+    except Exception as e:
+        st.error(f"Model training failed: {e}")
+        st.stop()
 
     # -----------------------------
     # Prediction
     # -----------------------------
-    input_data = np.array([[dep_delay, distance, month_input]])
-    predicted = model.predict(input_data)[0]
+    try:
+        input_data = np.array([[dep_delay, distance, month_input]])
+        predicted = model.predict(input_data)[0]
 
-    st.success(f"Predicted Arrival Delay: {round(predicted,2)} minutes")
+        # Optional: Avoid extreme negative values
+        predicted = max(predicted, -60)
+
+        st.success(f"Predicted Arrival Delay: {round(predicted, 2)} minutes")
+
+    except Exception as e:
+        st.error(f"Prediction failed: {e}")
+        st.stop()
 
     # -----------------------------
-    # Accuracy
+    # Accuracy (SAFE)
     # -----------------------------
-    y_pred = model.predict(X_test)
-    accuracy = r2_score(y_test, y_pred)
+    try:
+        y_pred = model.predict(X_test)
 
-    st.write(f"📊 Model Accuracy (R² Score): {round(accuracy, 2)}")
+        if len(set(y_test)) > 1:
+            accuracy = r2_score(y_test, y_pred)
+
+            # Handle weird values
+            if np.isnan(accuracy):
+                st.warning("⚠️ Accuracy could not be calculated (NaN)")
+            else:
+                st.write(f"📊 Model Accuracy (R² Score): {round(accuracy, 2)}")
+        else:
+            st.warning("⚠️ Not enough variation to calculate accuracy")
+
+    except Exception as e:
+        st.warning(f"⚠️ Accuracy calculation skipped: {e}")
 
     # -----------------------------
     # Gauge Chart
     # -----------------------------
+    import plotly.graph_objects as go
+
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
         value=predicted,
-        gauge={'axis': {'range': [0, max(120, predicted + 10)]}},
+        gauge={'axis': {'range': [-60, max(120, predicted + 10)]}},
         title={'text': "Predicted Arrival Delay (minutes)"}
     ))
 

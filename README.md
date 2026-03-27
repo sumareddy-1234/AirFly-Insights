@@ -40,7 +40,7 @@ AirFly-Insights
 ├── Milestone3_Route_Seasonal_Insights.ipynb # Route & seasonal analysis
 ├── app.py                                # Streamlit dashboard
 ├── cleaned_flights.csv                   # Cleaned dataset
-└── AirFly_Insights_Final_Report.docx     # Full project report
+└── AirFly_Insights_Final_Report.pdf     # Full project report
 ```
 ## 🧹 Milestones  
 
@@ -93,20 +93,22 @@ AirFly-Insights
 
 ---
 
-## ▶️ Running the Dashboard  
+## ▶️ Running the Dashboard
 
-Install dependencies:  
+### 1. Install dependencies
 ```bash
 pip install streamlit pandas matplotlib seaborn plotly scikit-learn
-Run the dashboard:
-
-bash
+```
+2. Launch the app
+```bash
 streamlit run app.py
-The dashboard will launch in your browser at:
+```
+3. Open in browser
+The dashboard will be available at:
 
 Code
 http://localhost:8501
-```
+
 ## 📌 Conclusion  
 
 AirFly Insights demonstrates how raw airline operations data can be transformed into **actionable insights** through a structured, milestone-driven approach.  

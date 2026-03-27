@@ -42,72 +42,61 @@ AirFly-Insights
 ├── cleaned_flights.csv                   # Cleaned dataset
 └── AirFly_Insights_Final_Report.docx     # Full project report
 ```
-##🧹 Milestones
-🔹 Milestone 1: Data Foundation & Cleaning
-Defined KPIs and workflow
+## 🧹 Milestones  
 
-Handled missing values and optimized memory
+### 🔹 Milestone 1: Data Foundation & Cleaning  
+- Defined KPIs and workflow  
+- Handled missing values and optimized memory  
+- Engineered features: Month, Day of Week, Hour, Route  
+- Produced a cleaned dataset (`cleaned_flights.csv`)  
 
-Engineered features: Month, Day of Week, Hour, Route
-
-Produced a cleaned dataset (cleaned_flights.csv)
 ---
 
-🔹 Milestone 2: Visual Exploration & Delay Trends
-Built bar charts, histograms, boxplots, line plots
+### 🔹 Milestone 2: Visual Exploration & Delay Trends  
+- Built bar charts, histograms, boxplots, line plots  
+- Compared delay causes (carrier, weather, NAS)  
+- Identified busiest routes and delay-prone airlines  
 
-Compared delay causes (carrier, weather, NAS)
-
-Identified busiest routes and delay-prone airlines
 ---
 
-🔹 Milestone 3: Route, Cancellation & Seasonal Insights
-Top 10 busiest routes identified
+### 🔹 Milestone 3: Route, Cancellation & Seasonal Insights  
+- Top 10 busiest routes identified  
+- Delay heatmaps for congestion hotspots  
+- Seasonal cancellation analysis (winter, holidays)  
 
-Delay heatmaps for congestion hotspots
-
-Seasonal cancellation analysis (winter, holidays)
 ---
 
-🔹 Milestone 4: Interactive Dashboard
-Streamlit dashboard with filters and KPIs
+### 🔹 Milestone 4: Interactive Dashboard  
+- Streamlit dashboard with filters and KPIs  
+- Sections: Route Analysis, Delay Causes, Seasonal Insights, Airline Performance  
+- Delay Estimator using Linear Regression  
 
-Sections: Route Analysis, Delay Causes, Seasonal Insights, Airline Performance
-
-Delay Estimator using Linear Regression
-
-📈 Key Insights
-Carrier delays dominate; weather delays spike seasonally
-
-Winter & holiday seasons show higher cancellations
-
-Certain airports consistently face congestion
-
-Departure and arrival delays strongly correlated
-
-Predictive modeling adds planning capability
 ---
 
-##🚀 Future Enhancements
-Integration of live flight data APIs
+## 📈 Key Insights  
+- Carrier delays dominate; weather delays spike seasonally  
+- Winter & holiday seasons show higher cancellations  
+- Certain airports consistently face congestion  
+- Departure and arrival delays strongly correlated  
+- Predictive modeling adds planning capability  
 
-Advanced ML models (Random Forest, Gradient Boosting, Neural Networks)
-
-Expanded predictive analytics with weather & traffic features
-
-Enhanced UI with modern themes and mobile support
-
-Automated reporting (PDF/PowerPoint exports)
-
-Cloud deployment for scalability
-
-Role-based dashboards for different stakeholders
 ---
 
-##▶️ Running the Dashboard
-Install dependencies:
+## 🚀 Future Enhancements  
+- Integration of live flight data APIs  
+- Advanced ML models (Random Forest, Gradient Boosting, Neural Networks)  
+- Expanded predictive analytics with weather & traffic features  
+- Enhanced UI with modern themes and mobile support  
+- Automated reporting (PDF/PowerPoint exports)  
+- Cloud deployment for scalability  
+- Role-based dashboards for different stakeholders  
 
-bash
+---
+
+## ▶️ Running the Dashboard  
+
+Install dependencies:  
+```bash
 pip install streamlit pandas matplotlib seaborn plotly scikit-learn
 Run the dashboard:
 
@@ -117,14 +106,12 @@ The dashboard will launch in your browser at:
 
 Code
 http://localhost:8501
----
-##📌 Conclusion
+📌 Conclusion
 AirFly Insights demonstrates how raw airline operations data can be transformed into actionable insights through a structured, milestone-driven approach.
 From preprocessing and visualization to predictive modeling and dashboard deployment, the project showcases technical rigor, professional presentation, and real-world applicability.
 It empowers airline operators, analysts, and decision-makers with interactive tools to assess performance bottlenecks, understand delay patterns, and plan effectively.
----
 
-##👩‍💻 Author
+👩‍💻 Author
 Suma Satti  
 B.Tech CSE (Data Science) | Aspiring Data Analyst
-📌 Project completed as part of the Infosys Springboard Virtual Internship 6.0  
+📌 Project completed as part of the Infosys Springboard Virtual Internship 6.0

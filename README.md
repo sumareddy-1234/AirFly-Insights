@@ -106,8 +106,9 @@ streamlit run app.py
 3. Open in browser
 The dashboard will be available at:
 
-Code
+```bash
 http://localhost:8501
+```
 
 ## 📌 Conclusion  
 

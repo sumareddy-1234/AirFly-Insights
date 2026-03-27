@@ -1,209 +1,122 @@
-# ✈️ AirFly Insights: Data Visualization and Analysis of Airline Operations
+# ✈️ AirFly Insights: Data Visualization and Analysis of Airline Operations  
 
-## 📌 Project Overview
-
-AirFly Insights is a **data visualization project focused on large-scale airline flight data**. The project analyzes airline operational performance to identify **delay patterns, route congestion, seasonal trends, and airport-level activity** through visual analysis.
-
-The objective is to transform aviation datasets into **meaningful insights using data visualization techniques**, helping understand airline operations and performance.
-
-This project was developed as part of the **Infosys Springboard Virtual Internship 6.0**.
-
----
-
-# 🎯 Project Statement
-
-The objective of this project is to **analyze large-scale airline flight data to uncover operational trends, delay patterns, and cancellation reasons using data visualization techniques**.
-
-The goal is to help understand **airline and airport-level performance** and contribute to **actionable insights using visual analysis**.
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-yellow?logo=pandas)
+![NumPy](https://img.shields.io/badge/NumPy-Numerical%20Computing-orange?logo=numpy)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-green?logo=plotly)
+![Seaborn](https://img.shields.io/badge/Seaborn-Statistical%20Plots-lightblue?logo=seaborn)
+![Plotly](https://img.shields.io/badge/Plotly-Interactive%20Charts-orange?logo=plotly)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red?logo=streamlit)
+![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-blue?logo=scikitlearn)
 
 ---
 
-# 🎓 Internship Context
+## 📌 Project Overview  
 
-This project is part of the **Infosys Springboard Virtual Internship 6.0**, where the objective is to apply **data analytics and visualization techniques** to a real-world aviation dataset.
+AirFly Insights is a **data-driven application** that transforms raw airline flight data into actionable insights.  
+It analyzes **delays, cancellations, congestion, and seasonal trends** across airlines and airports, supporting better operational planning.  
 
-The project demonstrates practical skills in:
-
-* Data preprocessing and feature engineering
-* Exploratory Data Analysis (EDA)
-* Statistical visualization
-* Airline operations analysis
-* Interactive dashboard development
+Developed during the **Infosys Springboard Virtual Internship 6.0**, the project combines **data cleaning, statistical visualization, and interactive dashboards** with predictive analytics.  
 
 ---
 
-# 📂 Project Files
+## 🎯 Objectives  
 
-```id="9e5lg7"
+- Clean and preprocess large-scale flight datasets  
+- Explore operational trends through visualizations  
+- Identify delay causes and seasonal cancellation patterns  
+- Build route-level and airport-level insights  
+- Develop an interactive Streamlit dashboard with predictive modeling  
+
+---
+
+## 📂 Project Files  
+
+```plaintext
 AirFly-Insights
 │
-├── AirFly_Insights_Milestone1_Data_Cleaning.ipynb
-├── AirFly_Insights_Milestone2_Visual_Analysis.ipynb
-├── Milestone3_Route_Seasonal_Cancellation_Insights.ipynb
-├── app.py
-├── cleaned_flights.csv
-└── README.md
+├── Milestone1_Data_Cleaning.ipynb        # Data cleaning & preprocessing
+├── Milestone2_Visual_Analysis.ipynb      # Delay trends & visual exploration
+├── Milestone3_Route_Seasonal_Insights.ipynb # Route & seasonal analysis
+├── app.py                                # Streamlit dashboard
+├── cleaned_flights.csv                   # Cleaned dataset
+└── AirFly_Insights_Final_Report.docx     # Full project report
 ```
+## 🧹 Milestones  
+
+### 🔹 Milestone 1: Data Foundation & Cleaning  
+- Defined KPIs and workflow  
+- Handled missing values and optimized memory  
+- Engineered features: Month, Day of Week, Hour, Route  
+- Produced a cleaned dataset (`cleaned_flights.csv`)  
 
 ---
 
-# 🧰 Technologies Used
-
-* **Python**
-* **Pandas** – data manipulation and preprocessing
-* **NumPy** – numerical operations
-* **Matplotlib** – data visualization
-* **Seaborn** – statistical visualization
-* **Streamlit** – interactive dashboard development
+### 🔹 Milestone 2: Visual Exploration & Delay Trends  
+- Built bar charts, histograms, boxplots, line plots  
+- Compared delay causes (carrier, weather, NAS)  
+- Identified busiest routes and delay-prone airlines  
 
 ---
 
-# 📊 Expected Outcomes
-
-The project aims to achieve the following outcomes:
-
-* Understand and preprocess aviation datasets for analysis
-* Explore trends in flight schedules, delays, cancellations, and routes
-* Visualize key metrics using bar charts, time series, heatmaps, maps, and comparisons
-* Provide insights for stakeholders including airline operators and analysts
-* Summarize findings through a final visual report and presentation
+### 🔹 Milestone 3: Route, Cancellation & Seasonal Insights  
+- Top 10 busiest routes identified  
+- Delay heatmaps for congestion hotspots  
+- Seasonal cancellation analysis (winter, holidays)  
 
 ---
 
-# 📅 Week-wise Implementation Plan
-
-## 🔹 Milestone 1: Data Foundation and Cleaning
-
-### Week 1: Project Initialization and Dataset Setup
-
-Key activities performed:
-
-* Define project goals, KPIs, and workflow
-* Load flight datasets using Pandas
-* Explore dataset schema, column types, dataset size, and null values
-* Perform sampling and memory optimization for efficient analysis
-
-### Week 2: Preprocessing and Feature Engineering
-
-Key tasks performed:
-
-* Handle missing values in delay and cancellation columns
-* Create derived features including:
-
-  * Month
-  * Day of Week
-  * Hour
-  * Route (Origin → Destination)
-* Format datetime columns
-* Save a cleaned dataset for analysis
-
-### Deliverables
-
-* Cleaned dataset
-* Summary of preprocessing logic
-* Feature dictionary
+### 🔹 Milestone 4: Interactive Dashboard  
+- Streamlit dashboard with filters and KPIs  
+- Sections: Route Analysis, Delay Causes, Seasonal Insights, Airline Performance  
+- Delay Estimator using Linear Regression  
 
 ---
 
-## 🔹 Milestone 2: Visual Exploration and Delay Trends
-
-### Week 3: Univariate and Bivariate Visual Analysis
-
-Analysis tasks include:
-
-* Identifying top airlines by number of flights
-* Identifying busiest routes
-* Analyzing flight distribution across months and hours
-* Exploring airport activity patterns
-
-Visualization techniques used:
-
-* Bar charts
-* Histograms
-* Boxplots
-* Line charts
-
-### Week 4: Delay Analysis – Airline and Weather
-
-Analysis tasks include:
-
-* Comparing delay causes by airline
-* Exploring carrier delays, weather delays, and NAS delays
-* Visualizing delay patterns by time of day and airport
-
-### Deliverables
-
-* A set of visualizations (minimum 8)
-* Observations identifying peak delays and delay-prone airlines
+## 📈 Key Insights  
+- Carrier delays dominate; weather delays spike seasonally  
+- Winter & holiday seasons show higher cancellations  
+- Certain airports consistently face congestion  
+- Departure and arrival delays strongly correlated  
+- Predictive modeling adds planning capability  
 
 ---
 
-## 🔹 Milestone 3: Route, Cancellation, and Seasonal Insights
-
-### Week 5: Route and Airport-Level Analysis
-
-Key analyses include:
-
-* Identification of top 10 origin-destination route pairs
-* Delay heatmaps by airport and route
-* Visualization of busiest airports and delay patterns
-
-### Week 6: Seasonal and Cancellation Analysis
-
-Analysis tasks include:
-
-* Monthly cancellation trends
-* Cancellation type analysis (carrier, weather, security, NAS)
-* Analysis of seasonal patterns such as winter months and holidays
-
-### Deliverables
-
-* Seasonal visual summaries
-* Insights on route congestion and operational trends
+## 🚀 Future Enhancements  
+- Integration of live flight data APIs  
+- Advanced ML models (Random Forest, Gradient Boosting, Neural Networks)  
+- Expanded predictive analytics with weather & traffic features  
+- Enhanced UI with modern themes and mobile support  
+- Automated reporting (PDF/PowerPoint exports)  
+- Cloud deployment for scalability  
+- Role-based dashboards for different stakeholders  
 
 ---
 
-# 📊 Interactive Dashboard
+## ▶️ Running the Dashboard  
 
-An **interactive analytics dashboard** was built using **Streamlit** to explore airline operational insights dynamically.
-
-The dashboard allows users to analyze:
-
-* Airline performance
-* Route congestion patterns
-* Airport delay trends
-* Seasonal patterns
-* Delay causes
-
----
-
-# ▶️ Running the Dashboard
-
-Install dependencies:
-
-```id="fd5p7i"
-pip install streamlit pandas matplotlib seaborn
-```
-
+Install dependencies:  
+```bash
+pip install streamlit pandas matplotlib seaborn plotly scikit-learn
 Run the dashboard:
 
-```id="ty1xv3"
+bash
 streamlit run app.py
-```
-
 The dashboard will launch in your browser at:
 
-```id="dz2hve"
+Code
 http://localhost:8501
 ```
+## 📌 Conclusion  
+
+AirFly Insights demonstrates how raw airline operations data can be transformed into **actionable insights** through a structured, milestone-driven approach.  
+From preprocessing and visualization to predictive modeling and dashboard deployment, the project showcases **technical rigor, professional presentation, and real-world applicability**.  
+It empowers airline operators, analysts, and decision-makers with interactive tools to assess performance bottlenecks, understand delay patterns, and plan effectively.  
 
 ---
 
-# 👩‍💻 Author
+## 👩‍💻 Author  
 
-**Suma**
-Data Science Student
-
-Project completed as part of the **Infosys Springboard Virtual Internship 6.0**
-
-
+**Suma Satti**  
+B.Tech CSE (Data Science) | Aspiring Data Analyst  
+📌 Project completed as part of the **Infosys Springboard Virtual Internship 6.0**  

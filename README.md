@@ -41,7 +41,8 @@ AirFly-Insights
 ├── app.py                                # Streamlit dashboard
 ├── cleaned_flights.csv                   # Cleaned dataset
 └── AirFly_Insights_Final_Report.docx     # Full project report
-🧹 Milestones
+```
+##🧹 Milestones
 🔹 Milestone 1: Data Foundation & Cleaning
 Defined KPIs and workflow
 
@@ -50,6 +51,7 @@ Handled missing values and optimized memory
 Engineered features: Month, Day of Week, Hour, Route
 
 Produced a cleaned dataset (cleaned_flights.csv)
+---
 
 🔹 Milestone 2: Visual Exploration & Delay Trends
 Built bar charts, histograms, boxplots, line plots
@@ -57,6 +59,7 @@ Built bar charts, histograms, boxplots, line plots
 Compared delay causes (carrier, weather, NAS)
 
 Identified busiest routes and delay-prone airlines
+---
 
 🔹 Milestone 3: Route, Cancellation & Seasonal Insights
 Top 10 busiest routes identified
@@ -64,6 +67,7 @@ Top 10 busiest routes identified
 Delay heatmaps for congestion hotspots
 
 Seasonal cancellation analysis (winter, holidays)
+---
 
 🔹 Milestone 4: Interactive Dashboard
 Streamlit dashboard with filters and KPIs
@@ -82,8 +86,9 @@ Certain airports consistently face congestion
 Departure and arrival delays strongly correlated
 
 Predictive modeling adds planning capability
+---
 
-🚀 Future Enhancements
+##🚀 Future Enhancements
 Integration of live flight data APIs
 
 Advanced ML models (Random Forest, Gradient Boosting, Neural Networks)
@@ -97,8 +102,9 @@ Automated reporting (PDF/PowerPoint exports)
 Cloud deployment for scalability
 
 Role-based dashboards for different stakeholders
+---
 
-▶️ Running the Dashboard
+##▶️ Running the Dashboard
 Install dependencies:
 
 bash
@@ -111,12 +117,14 @@ The dashboard will launch in your browser at:
 
 Code
 http://localhost:8501
-📌 Conclusion
+---
+##📌 Conclusion
 AirFly Insights demonstrates how raw airline operations data can be transformed into actionable insights through a structured, milestone-driven approach.
 From preprocessing and visualization to predictive modeling and dashboard deployment, the project showcases technical rigor, professional presentation, and real-world applicability.
 It empowers airline operators, analysts, and decision-makers with interactive tools to assess performance bottlenecks, understand delay patterns, and plan effectively.
+---
 
-👩‍💻 Author
+##👩‍💻 Author
 Suma Satti  
 B.Tech CSE (Data Science) | Aspiring Data Analyst
 📌 Project completed as part of the Infosys Springboard Virtual Internship 6.0  

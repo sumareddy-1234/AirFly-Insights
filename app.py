@@ -31,6 +31,16 @@ except FileNotFoundError:
     st.error("❌ Dataset not found. Please make sure 'cleaned_flights.csv' is in the folder.")
     st.stop()
 
+
+# Month Mapping
+month_map = {
+    1: "Jan", 2: "Feb", 3: "Mar", 4: "Apr",
+    5: "May", 6: "Jun", 7: "Jul", 8: "Aug",
+    9: "Sep", 10: "Oct", 11: "Nov", 12: "Dec"
+}
+
+df["MONTH"] = df["MONTH"].astype(int)  
+df["MONTH_NAME"] = df["MONTH"].map(month_map)
 # -----------------------------
 # Sidebar Navigation
 # -----------------------------
@@ -65,7 +75,7 @@ airline_filter = st.sidebar.multiselect(
 
 month_filter = st.sidebar.multiselect(
     "Select Month(s)",
-    options=sorted(df["MONTH"].unique())
+    options=list(month_map.values())
 )
 
 origin_filter = st.sidebar.multiselect(
@@ -82,7 +92,8 @@ route_filter = st.sidebar.multiselect(
 if airline_filter:
     df = df[df["AIRLINE"].isin(airline_filter)]
 if month_filter:
-    df = df[df["MONTH"].isin(month_filter)]
+    selected_month_nums = [k for k, v in month_map.items() if v in month_filter]
+    df = df[df["MONTH"].isin(selected_month_nums)]
 if origin_filter:
     df = df[df["ORIGIN"].isin(origin_filter)]
 if route_filter:
@@ -207,6 +218,7 @@ elif section == "🛫 Route Analysis":
     
         # ---- Route Congestion Bubble ----
     st.markdown("## 🟢 Route Congestion & Delay Intensity")
+
     route_stats = (
         df.groupby("ROUTE")
         .agg(
@@ -216,6 +228,12 @@ elif section == "🛫 Route Analysis":
         )
         .reset_index()
     )
+
+    # 🔥 IMPORTANT: Reduce data (TOP 100 routes only)
+    route_stats = route_stats.sort_values(
+        "FLIGHT_COUNT", ascending=False
+    ).head(100)
+
     fig = px.scatter(
         route_stats,
         x="FLIGHT_COUNT",
@@ -229,23 +247,45 @@ elif section == "🛫 Route Analysis":
             "TOTAL_DELAY": "Total Delay (minutes)"
         },
         color="AVG_ARR_DELAY",
-        color_continuous_scale="Viridis",
         opacity=0.7,
         size_max=40
     )
-    st.plotly_chart(fig, use_container_width=True) 
 
+    # 🔥 Force non-WebGL rendering (VERY IMPORTANT)
+    fig.update_traces(mode='markers')
+
+    st.plotly_chart(fig, use_container_width=True)
 # -----------------------------
 # AIRPORT PERFORMANCE
 # -----------------------------
 elif section == "🏢 Airport Performance":
     st.markdown("## 🏢 Average Arrival Delay per Airport per Month")
-    pivot = df.pivot_table(values='ARR_DELAY', index='ORIGIN', columns='MONTH', aggfunc='mean')
-    fig = px.imshow(pivot,
-                    aspect="auto",
-                    color_continuous_scale='Blues',
-                    title="Heatmap of Average Arrival Delay (minutes)",
-                    labels={"x":"Month", "y":"Airport", "color":"Avg Arrival Delay (minutes)"})
+
+    # Create pivot using MONTH_NAME
+    pivot = df.pivot_table(
+        values='ARR_DELAY',
+        index='ORIGIN',
+        columns='MONTH_NAME',
+        aggfunc='mean'
+    )
+
+    # Ensure correct month order
+    month_order = ["Jan","Feb","Mar","Apr","May","Jun",
+                "Jul","Aug","Sep","Oct","Nov","Dec"]
+
+    pivot = pivot.reindex(columns=month_order)
+
+    # Plot
+    fig = px.imshow(
+        pivot,
+        aspect="auto",
+        color_continuous_scale='Blues',
+        title="Heatmap of Average Arrival Delay (minutes)",
+        labels={"x":"Month", "y":"Airport", "color":"Avg Arrival Delay (minutes)"}
+    )
+
+    fig.update_xaxes(type='category')
+
     st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("## ✈️ Top 10 Airports by Average Arrival Delay")
@@ -281,15 +321,6 @@ elif section == "🏢 Airport Performance":
 # DELAY ANALYSIS
 # -----------------------------
 elif section == "⏱️ Delay Analysis":
-    st.markdown("## ⏱️ Departure vs Arrival Delay")
-    fig = px.scatter(df,
-                     x="DEP_DELAY",
-                     y="ARR_DELAY",
-                     opacity=0.5,
-                     title="Departure vs Arrival Delay",
-                     labels={"DEP_DELAY":"Departure Delay (minutes)", "ARR_DELAY":"Arrival Delay (minutes)"})
-    st.plotly_chart(fig, use_container_width=True)
-
     st.markdown("## 🔢 Arrival Delay Distribution")
     fig = px.histogram(df,
                        x="ARR_DELAY",
@@ -318,7 +349,10 @@ elif section == "⏱️ Delay Analysis":
 
         # ---- Delay Pattern by Month & Hour Heatmap ----
     st.markdown("## ⏰ Delay Pattern by Month & Hour")
-    pivot = df.pivot_table(values='ARR_DELAY', index='MONTH', columns='HOUR', aggfunc='mean')
+    pivot = df.pivot_table(values='ARR_DELAY', index='MONTH_NAME', columns='HOUR', aggfunc='mean')
+
+    # Sort months correctly
+    pivot = pivot.reindex(["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"])
     fig_heat = px.imshow(
         pivot,
         aspect="auto",
@@ -440,10 +474,11 @@ elif section == "🌦️ Seasonal Insights":
 
     # ---- Weather vs Carrier Delay Trend ----
     st.markdown("## 🌤️ Weather vs Carrier Delay Trend")
-    delay_cause = df.groupby("MONTH")[["DELAY_DUE_CARRIER","DELAY_DUE_WEATHER"]].sum().reset_index()
+    delay_cause = df.groupby(["MONTH","MONTH_NAME"])[["DELAY_DUE_CARRIER","DELAY_DUE_WEATHER"]].sum().reset_index()
+    delay_cause = delay_cause.sort_values("MONTH")
     fig_cause = px.line(
         delay_cause,
-        x="MONTH",
+        x="MONTH_NAME",
         y=["DELAY_DUE_CARRIER","DELAY_DUE_WEATHER"],
         markers=True,
         title="Monthly Delay Trend: Carrier vs Weather",
@@ -452,15 +487,15 @@ elif section == "🌦️ Seasonal Insights":
     st.plotly_chart(fig_cause, use_container_width=True)
 
         # ---- Monthly Delay Volatility ----
-    st.markdown("## 📉 Monthly Delay Volatility")
-    monthly_vol = df.groupby("MONTH")["ARR_DELAY"].std().reset_index()
+    monthly_vol = df.groupby(["MONTH","MONTH_NAME"])["ARR_DELAY"].std().reset_index()
+    monthly_vol = monthly_vol.sort_values("MONTH")
+
     fig_vol = px.line(
         monthly_vol,
-        x="MONTH",
+        x="MONTH_NAME",
         y="ARR_DELAY",
         markers=True,
-        title="Monthly Arrival Delay Volatility (Std Dev)",
-        labels={"MONTH":"Month", "ARR_DELAY":"Delay Volatility (minutes)"}
+        title="Monthly Arrival Delay Volatility",
     )
     st.plotly_chart(fig_vol, use_container_width=True) 
 

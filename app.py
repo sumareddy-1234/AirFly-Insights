@@ -216,42 +216,48 @@ elif section == "🛫 Route Analysis":
                  labels={"Number of Flights": "Number of Flights", "Route Name": "Route"})
     st.plotly_chart(fig, use_container_width=True)
     
-        # ---- Route Congestion Bubble ----
+     # ---- Route Congestion Bubble ----
     st.markdown("## 🟢 Route Congestion & Delay Intensity")
 
     route_stats = (
         df.groupby("ROUTE")
         .agg(
-            FLIGHT_COUNT=("ROUTE","count"),
-            AVG_ARR_DELAY=("ARR_DELAY","mean"),
-            TOTAL_DELAY=("ARR_DELAY","sum")
+            FLIGHT_COUNT=("ROUTE", "count"),
+            AVG_ARR_DELAY=("ARR_DELAY", "mean")
         )
         .reset_index()
     )
 
-    # 🔥 IMPORTANT: Reduce data (TOP 100 routes only)
+    # Remove extreme outliers (optional but recommended)
+    route_stats = route_stats[route_stats["AVG_ARR_DELAY"].notna()]
+
+    # 🔥 Focus on top routes
     route_stats = route_stats.sort_values(
         "FLIGHT_COUNT", ascending=False
     ).head(100)
+
+    # 🔥 NEW: Use meaningful size metric
+    route_stats["DELAY_IMPACT"] = (
+        route_stats["FLIGHT_COUNT"] * route_stats["AVG_ARR_DELAY"]
+    )
 
     fig = px.scatter(
         route_stats,
         x="FLIGHT_COUNT",
         y="AVG_ARR_DELAY",
-        size="TOTAL_DELAY",
+        size="AVG_ARR_DELAY",   # severity 
+        color="FLIGHT_COUNT",   # congestion
         hover_name="ROUTE",
-        title="Route Congestion & Delay Intensity Analysis",
+        title="Route Congestion vs Delay Severity",
         labels={
             "FLIGHT_COUNT": "Flight Volume (Number of Flights)",
-            "AVG_ARR_DELAY": "Average Arrival Delay (minutes)",
-            "TOTAL_DELAY": "Total Delay (minutes)"
+            "AVG_ARR_DELAY": "Average Arrival Delay (minutes)"
         },
-        color="AVG_ARR_DELAY",
         opacity=0.7,
-        size_max=40
+        size_max=40,
+        color_continuous_scale="Blues"
     )
 
-    # 🔥 Force non-WebGL rendering (VERY IMPORTANT)
     fig.update_traces(mode='markers')
 
     st.plotly_chart(fig, use_container_width=True)
@@ -515,7 +521,7 @@ elif section == "⚠️ Delay Causes":
         color_continuous_scale="Purples"
     )
     st.plotly_chart(fig4, use_container_width=True)
-    
+
     # 5. MONTHLY TREND OF TOP CAUSE
     st.markdown("### 📈 Monthly Trend of Major Delay Causes")
 

@@ -427,30 +427,125 @@ elif section == "⏱️ Delay Analysis":
 # DELAY CAUSES
 # -----------------------------
 elif section == "⚠️ Delay Causes":
-    st.markdown("## ⚠️ Total Delays by Cause")
-    delay_causes = df[[
+
+    st.markdown("## ⚠️ Delay Causes Analysis")
+
+    # 1. TOTAL DELAY MINUTES (IMPACT)
+    st.markdown("### ⏱️ Total Delay Impact by Cause")
+
+    delay_minutes = df[[
         "DELAY_DUE_CARRIER",
         "DELAY_DUE_WEATHER",
         "DELAY_DUE_NAS",
         "DELAY_DUE_SECURITY",
         "DELAY_DUE_LATE_AIRCRAFT"
     ]].sum().reset_index()
-    delay_causes.columns = ["Cause", "Number of Delayed Flights"]
 
-    fig = px.bar(delay_causes,
-                 x="Number of Delayed Flights",
-                 y="Cause",
-                 orientation='h',
-                 title="Total Delays by Cause",
-                 labels={"Number of Delayed Flights":"Number of Delayed Flights", "Cause":"Reason for Delay"})
-    st.plotly_chart(fig, use_container_width=True)
+    delay_minutes.columns = ["Cause", "Total Delay Minutes"]
 
-    st.markdown("## ⚠️ Proportion of Delay Causes")
-    fig = px.pie(delay_causes,
-                 values="Number of Delayed Flights",
-                 names="Cause",
-                 title="Proportion of Delay Causes")
-    st.plotly_chart(fig, use_container_width=True) 
+    fig1 = px.bar(
+        delay_minutes,
+        x="Total Delay Minutes",
+        y="Cause",
+        orientation='h',
+        title="Total Delay Minutes by Cause",
+        labels={"Total Delay Minutes": "Total Delay (minutes)", "Cause": "Delay Cause"},
+        color="Total Delay Minutes",
+        color_continuous_scale="Reds"
+    )
+    st.plotly_chart(fig1, use_container_width=True)
+
+
+    # 2. PROPORTION (DISTRIBUTION)
+    
+    st.markdown("### 🥧 Proportion of Total Delay")
+
+    fig2 = px.pie(
+        delay_minutes,
+        values="Total Delay Minutes",
+        names="Cause",
+        title="Proportion of Total Delay by Cause"
+    )
+    st.plotly_chart(fig2, use_container_width=True)
+
+    # 3. NUMBER OF FLIGHTS DELAYED (FREQUENCY)
+
+    st.markdown("### ✈️ Number of Flights Delayed by Cause")
+
+    delay_counts = pd.DataFrame({
+        "Cause": [
+            "Carrier", "Weather", "NAS", "Security", "Late Aircraft"
+        ],
+        "Number of Flights": [
+            (df["DELAY_DUE_CARRIER"] > 0).sum(),
+            (df["DELAY_DUE_WEATHER"] > 0).sum(),
+            (df["DELAY_DUE_NAS"] > 0).sum(),
+            (df["DELAY_DUE_SECURITY"] > 0).sum(),
+            (df["DELAY_DUE_LATE_AIRCRAFT"] > 0).sum()
+        ]
+    })
+
+    fig3 = px.bar(
+        delay_counts,
+        x="Number of Flights",
+        y="Cause",
+        orientation='h',
+        title="Number of Flights Delayed by Each Cause",
+        color="Number of Flights",
+        color_continuous_scale="Blues"
+    )
+    st.plotly_chart(fig3, use_container_width=True)
+
+    # 4. AVERAGE DELAY PER FLIGHT (SEVERITY)
+    st.markdown("### 📊 Average Delay per Flight by Cause")
+
+    avg_delay = delay_minutes.copy()
+    avg_delay["Number of Flights"] = delay_counts["Number of Flights"]
+    avg_delay["Avg Delay per Flight"] = (
+        avg_delay["Total Delay Minutes"] / avg_delay["Number of Flights"]
+    )
+
+    fig4 = px.bar(
+        avg_delay,
+        x="Avg Delay per Flight",
+        y="Cause",
+        orientation='h',
+        title="Average Delay per Flight (minutes)",
+        color="Avg Delay per Flight",
+        color_continuous_scale="Purples"
+    )
+    st.plotly_chart(fig4, use_container_width=True)
+    
+    # 5. MONTHLY TREND OF TOP CAUSE
+    st.markdown("### 📈 Monthly Trend of Major Delay Causes")
+
+    monthly_delay = df.groupby(["MONTH_NAME"])[[
+        "DELAY_DUE_CARRIER",
+        "DELAY_DUE_WEATHER",
+        "DELAY_DUE_NAS"
+    ]].sum().reset_index()
+
+    # Ensure proper month order
+    month_order = ["Jan","Feb","Mar","Apr","May","Jun",
+                   "Jul","Aug","Sep","Oct","Nov","Dec"]
+    monthly_delay["MONTH_NAME"] = pd.Categorical(
+        monthly_delay["MONTH_NAME"], categories=month_order, ordered=True
+    )
+    monthly_delay = monthly_delay.sort_values("MONTH_NAME")
+
+    fig5 = px.line(
+        monthly_delay,
+        x="MONTH_NAME",
+        y=[
+            "DELAY_DUE_CARRIER",
+            "DELAY_DUE_WEATHER",
+            "DELAY_DUE_NAS"
+        ],
+        markers=True,
+        title="Monthly Delay Trends by Major Causes",
+        labels={"value": "Total Delay (minutes)", "variable": "Delay Cause"}
+    )
+    st.plotly_chart(fig5, use_container_width=True)
 
 # -----------------------------
 # SEASONAL INSIGHTS

@@ -109,6 +109,12 @@ The dashboard will be available at:
 ```bash
 http://localhost:8501
 ```
+🚀 Live Demo
+
+🔗 AirFly Insights Dashboard
+👉 https://airfly-insights-wutz4r573vksss3wscbgjo.streamlit.app/
+
+---
 
 ## 📌 Conclusion  
 

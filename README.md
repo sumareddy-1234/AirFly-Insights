@@ -13,10 +13,6 @@ The objective is not just cleaning the data, but also understanding its **distri
 This project is part of my Infosys SpringBoard Virtual Internship 6.0 in Data Visualization and helps me build practical skills in handling real-world datasets.
 
 ---
-## Dataset
-https://www.kaggle.com/datasets/patrickzel/flight-delay-and-cancellation-dataset-2019-2023
-
----
 
 ## 🎯 Objectives
 
@@ -31,7 +27,8 @@ https://www.kaggle.com/datasets/patrickzel/flight-delay-and-cancellation-dataset
 
 ## 📂 Dataset
 
-- **Source:** Kaggle Airlines Flights Dataset  
+- **Source:** Kaggle Airlines Flights Dataset
+- https://www.kaggle.com/datasets/patrickzel/flight-delay-and-cancellation-dataset-2019-2023
 - Contains flight-level operational data including:
   - Airline
   - Origin and destination airports
